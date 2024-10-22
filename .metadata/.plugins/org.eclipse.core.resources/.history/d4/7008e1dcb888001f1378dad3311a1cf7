@@ -1,0 +1,9 @@
+package com.capstone.healthcare.appointment_service.dto;
+
+public class AppointmentDTO {
+    private Long patientId;
+    private String doctor;
+    private String appointmentDate;
+
+    // Getters and setters
+}

@@ -1,0 +1,36 @@
+package com.capstone.healthcare.patient_service;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PatientServiceApplication implements CommandLineRunner{
+
+	 @Autowired
+	    private DataSource dataSource;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(PatientServiceApplication.class, args);
+		
+	}
+	@Override
+    public void run(String... args) {
+        // Check the database connection
+        try (Connection connection = dataSource.getConnection()) {
+            if (connection != null) {
+                System.out.println("Successfully connected to the database: " + connection.getCatalog());
+            } else {
+                System.out.println("Failed to connect to the database!");
+            }
+        } catch (SQLException e) {
+            System.out.println("Database connection error: " + e.getMessage());
+        }
+    }
+}

@@ -1,0 +1,5 @@
+package com.capstone.healthcare.appointment_service.dto;
+
+public class PatientDTO {
+
+}

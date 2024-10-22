@@ -1,0 +1,8 @@
+package com.capstone.healthcare.appointment_service.bean;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Appointment {
+
+}

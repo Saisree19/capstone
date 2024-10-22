@@ -1,0 +1,5 @@
+package com.capstone.healthcare.patient_service.service;
+
+public class PatientService {
+
+}

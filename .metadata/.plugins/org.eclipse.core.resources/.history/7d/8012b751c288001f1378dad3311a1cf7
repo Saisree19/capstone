@@ -1,0 +1,45 @@
+package com.capstone.healthcare.appointment_service.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.capstone.healthcare.appointment_service.bean.Appointment;
+import com.capstone.healthcare.appointment_service.bean.Patient;
+import com.capstone.healthcare.appointment_service.client.PatientServiceClient;
+import com.capstone.healthcare.appointment_service.dto.AppointmentDTO;
+import com.capstone.healthcare.appointment_service.dto.PatientDTO;
+import com.capstone.healthcare.appointment_service.exception.PatientNotFoundException;
+import com.capstone.healthcare.appointment_service.repository.AppointmentRepository;
+
+@Service
+public class AppointmentService {
+	
+	@Autowired
+    private AppointmentRepository appointmentRepository;
+	
+
+    @Autowired
+    private PatientServiceClient patientServiceClient;
+
+ // Method to create an appointment
+    public Appointment createAppointment(Long patientId, String doctor, LocalDate appointmentDate, LocalTime appointmentTime) {
+
+        // Verify if the patient is registered by calling the PatientService via Feign Client
+        PatientDTO patientDTO = patientServiceClient.getPatientDetails(patientId);
+        
+        if (patientDTO == null) {
+            throw new RuntimeException("Patient not found: Cannot create an appointment for an unregistered patient.");
+        }
+
+        // Create new Appointment entity
+        Appointment appointment = new Appointment(
+                new Patient(patientDTO.getId(), patientDTO.getName(), patientDTO.getDateOfBirth(), patientDTO.getInsurer()),
+                doctor,
+                appointmentDate,
+                appointmentTime
+        );
+
+        // Save the appointment to the database
+        return appointmentRepository.save(appointment);
+    }
+}

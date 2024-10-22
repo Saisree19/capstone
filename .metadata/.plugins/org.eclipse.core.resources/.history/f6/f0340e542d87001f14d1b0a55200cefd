@@ -1,0 +1,47 @@
+package com.capstone.healthcare.patient_service.bean;
+
+import java.time.LocalDate;
+
+public class Patient {
+
+
+	private String name;
+	
+	private LocalDate dateOfBirth;
+	
+	private String insuranceDetails;
+
+	public Patient(String name, LocalDate dateOfBirth, String insuranceDetails) {
+		super();
+		this.name = name;
+		this.dateOfBirth = dateOfBirth;
+		this.insuranceDetails = insuranceDetails;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getInsuranceDetails() {
+		return insuranceDetails;
+	}
+
+	public void setInsuranceDetails(String insuranceDetails) {
+		this.insuranceDetails = insuranceDetails;
+	}
+	
+	
+	
+}

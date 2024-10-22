@@ -1,0 +1,43 @@
+package com.capstone.healthcare.appointment_service.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.capstone.healthcare.appointment_service.bean.Appointment;
+import com.capstone.healthcare.appointment_service.bean.Patient;
+import com.capstone.healthcare.appointment_service.client.PatientServiceClient;
+import com.capstone.healthcare.appointment_service.dto.AppointmentDTO;
+import com.capstone.healthcare.appointment_service.dto.PatientDTO;
+import com.capstone.healthcare.appointment_service.exception.PatientNotFoundException;
+import com.capstone.healthcare.appointment_service.repository.AppointmentRepository;
+
+@Service
+public class AppointmentService {
+	
+	@Autowired
+    private AppointmentRepository appointmentRepository;
+	
+
+    @Autowired
+    private PatientServiceClient patientServiceClient;
+
+    public AppointmentDTO createAppointment(AppointmentDTO appointment) {
+        // Verify if patient is registered
+        PatientDTO patient = patientServiceClient.getPatientById(appointment.getPatientId());
+        if (patient == null) {
+            throw new PatientNotFoundException("Patient is not registered.");
+        }
+
+        // Create new Appointment entity
+        Appointment appointment = new Appointment(
+                new Patient(patientDTO.getId(), patientDTO.getName(), patientDTO.getDateOfBirth(), patientDTO.getInsurer()),
+                doctor,
+                appointmentDate,
+                appointmentTime
+        );
+
+        // Save the appointment to the database
+        return appointmentRepository.save(appointment);
+        return appointment;
+    }
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Software\capstone\appointment-service\appointment-service"/>
+			<item value="C:\Software\capstone\api-gateway"/>
+			<item value="C:\Software\capstone\eureka-server"/>
+			<item value="C:\Software\capstone\registration-service"/>
+			<item value="C:\Software\capstone\spring-cloud-config-server\spring-cloud-config-server"/>
+			<item value="C:\Software\capstone\patient-service"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

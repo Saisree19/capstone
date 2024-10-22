@@ -1,0 +1,18 @@
+package com.capstone.healthcare.patient_service.controller;
+
+import java.time.LocalDate;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.capstone.healthcare.patient_service.bean.Patient;
+
+@RestController
+public class PatientController {
+
+	@GetMapping("/patient")
+	public Patient getPatientDetails() {
+		return new Patient("saisree",LocalDate.now(),"insurance");
+	}
+	
+}

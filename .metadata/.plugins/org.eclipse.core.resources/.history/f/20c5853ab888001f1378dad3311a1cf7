@@ -1,0 +1,5 @@
+package com.capstone.healthcare.appointment_service.controller;
+
+public class AppointmentController {
+
+}

@@ -1,0 +1,20 @@
+package com.capstone.healthcare.patient_service;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PatientServiceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(PatientServiceApplication.class, args);
+		try {
+            // Query to test connection and get database name
+            String databaseName = jdbcTemplate.queryForObject("SELECT DATABASE()", String.class);
+            return "Successfully connected to the database: " + databaseName;
+        } catch (Exception e) {
+            return "Failed to connect to the database: " + e.getMessage();
+        }
+	}
+
+}

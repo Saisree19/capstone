@@ -1,0 +1,24 @@
+package com.capstone.healthcare.registration_service.dto;
+
+import com.capstone.healthcare.patient_service.bean.Patient; // Adjust the import as necessary
+import java.time.LocalDate;
+
+public class PatientDTO {
+    private Long id;
+    private String name;
+    private LocalDate dateOfBirth;
+    private String insurer;
+
+    // Constructors
+    public PatientDTO() {}
+
+    public PatientDTO(Patient patient) {
+        this.id = patient.getId();
+        this.name = patient.getName();
+        this.dateOfBirth = patient.getDateOfBirth();
+        this.insurer = patient.getInsurer();
+    }
+
+    // Getters and Setters
+    // ... (existing getters and setters)
+}

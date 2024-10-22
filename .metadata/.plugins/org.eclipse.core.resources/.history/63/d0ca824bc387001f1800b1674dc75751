@@ -1,0 +1,43 @@
+package com.capstone.healthcare.registration_service.dto;
+
+import java.time.LocalDate;
+
+public class PatientDTO {
+    private String name;
+    private LocalDate dateOfBirth;
+    private String insurer;
+
+    // Constructors
+    public PatientDTO() {}
+
+    public PatientDTO(String name, LocalDate dateOfBirth, String insurer) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.insurer = insurer;
+    }
+
+    // Getters and Setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getInsurer() {
+        return insurer;
+    }
+
+    public void setInsurer(String insurer) {
+        this.insurer = insurer;
+    }
+}

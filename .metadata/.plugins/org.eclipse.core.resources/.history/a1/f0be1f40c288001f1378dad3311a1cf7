@@ -1,0 +1,29 @@
+package com.capstone.healthcare.appointment_service.controller;
+
+import com.capstone.healthcare.appointment_service.dto.AppointmentDTO;
+import com.capstone.healthcare.appointment_service.exception.PatientNotFoundException;
+import com.capstone.healthcare.appointment_service.service.AppointmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/appointments")
+public class AppointmentController {
+
+    @Autowired
+    private AppointmentService appointmentService;
+
+    @PostMapping("/create")
+    public ResponseEntity<Appointment> createAppointment(
+            @RequestParam Long patientId,
+            @RequestParam String doctor,
+            @RequestParam LocalDate appointmentDate,
+            @RequestParam LocalTime appointmentTime) {
+
+        Appointment appointment = appointmentService.createAppointment(patientId, doctor, appointmentDate, appointmentTime);
+
+        return ResponseEntity.ok(appointment);
+    }
+}

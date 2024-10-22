@@ -1,0 +1,39 @@
+package com.capstone.healthcare.registration_service.controller;
+
+import com.capstone.healthcare.registration_service.dto.PatientDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/registration")
+public class RegistrationController {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    private Map<String, PatientDTO> registeredPatients = new HashMap<>();
+
+    // Register a new patient
+    @PostMapping("/register")
+    public ResponseEntity<String> registerPatient(@RequestBody PatientDTO patientDTO) {
+        // Validate: Check if patient already exists (using name and date of birth)
+        String patientKey = patientDTO.getName() + patientDTO.getDateOfBirth();
+        if (registeredPatients.containsKey(patientKey)) {
+            return ResponseEntity.badRequest().body("Duplicate entry: Patient already registered.");
+        }
+
+        // If valid, call the patient service to create a new patient
+        String patientServiceUrl = "http://patient-service/api/patient/createPatient";
+        ResponseEntity<PatientDTO> response = restTemplate.postForEntity(patientServiceUrl, patientDTO, PatientDTO.class);
+
+        // Add to in-memory map to simulate persistence (can be replaced with a DB check)
+        registeredPatients.put(patientKey, patientDTO);
+
+        return ResponseEntity.status(response.getStatusCode()).body("Patient registered successfully!");
+    }
+}
